@@ -14,8 +14,6 @@ func solution(a int, b int) string {
 		result += days[i-1]
 	}
 
-	fmt.Println(result)
-
 	return weeks[(result+b+4)%len(weeks)]
 }
 
