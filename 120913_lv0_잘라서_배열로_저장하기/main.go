@@ -5,19 +5,27 @@ import (
 	"time"
 )
 
-func solution(money int) []int {
-	answer := []int{money / 5500, money % 5500}
+func solution(my_str string, n int) []string {
 
-	return answer
+	arr := []string{}
+	for i := 0; i < len(my_str); i += n {
+		max := i + n
+		if max > len(my_str) {
+			max = len(my_str)
+		}
+		arr = append(arr, my_str[i:max])
+	}
+
+	return arr
 }
 
-func report(money int, desireResult []int) {
+func report(my_str string, n int, desireResult []string) {
 
-	input := fmt.Sprintf("Input:[%v]", money)
+	input := fmt.Sprintf("Input:[%v, %v]", my_str, n)
 
 	start := time.Now()
 
-	result := solution(money)
+	result := solution(my_str, n)
 
 	duration := time.Since(start)
 
@@ -25,6 +33,7 @@ func report(money int, desireResult []int) {
 	if len(result) != len(desireResult) {
 		isSame = false
 	} else {
+
 		for i := range result {
 			if result[i] != desireResult[i] {
 				isSame = false
@@ -41,6 +50,6 @@ func report(money int, desireResult []int) {
 }
 
 func main() {
-	report(5500, []int{1, 0})
-	report(15000, []int{2, 4000})
+	report("abc1Addfggg4556b", 6, []string{"abc1Ad", "dfggg4", "556b"})
+	report("abcdef123", 3, []string{"abc", "def", "123"})
 }
